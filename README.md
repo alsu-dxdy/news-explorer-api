@@ -1,2 +1,2 @@
 # news-explorer-api
-news-explorer-api for diolom
+news-explorer-api for diplom
