@@ -26,10 +26,10 @@ const articleSchema = new mongoose.Schema({
   source: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => isURL(v),
-      message: 'Неправильный формат URL',
-    },
+    // validate: {
+    //   validator: (v) => isURL(v),
+    //   message: 'Неправильный формат URL',
+    // },
   },
   link: {
     type: String,
@@ -51,6 +51,7 @@ const articleSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
+    select: false,
   },
 });
 
