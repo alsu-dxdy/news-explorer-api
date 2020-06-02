@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { celebrate } = require('celebrate');
 
-// eslint-disable-next-line object-curly-newline
-const { getArticles, createArticle, getArticleById, removeArticleById } = require('../controllers/articles');
+const {
+  getArticles, createArticle, getArticleById, removeArticleById,
+} = require('../controllers/articles');
 const { postArticleSchema } = require('../schemasJoi/postArticleSchema');
 const { articleIdSchema } = require('../schemasJoi/articleIdSchema');
 
