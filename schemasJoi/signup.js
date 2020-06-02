@@ -5,8 +5,7 @@ module.exports.signUpSchema = {
     email: Joi.string().email().required(),
     password: Joi.string()
       .min(8)
-      // eslint-disable-next-line no-useless-escape
-      .regex(/^[-!@#%a-zA-Z0-9_{}\]\[\\\^\$\.\|\?\*\+\(\)]{8,30}$/) // экранирую спец символы
+      .regex(/^[`!@#$%^&*()_=+{};:"\\|,.]{8,30}$/) // экранирую спец символы
       .required(),
     name: Joi.string().min(2).max(30).required(),
   }),
