@@ -2,6 +2,7 @@
 news-explorer-api for diplom
 
 http://api.iseeknews.space/
+https://api.iseeknews.space/
 
 Описание: Cервис, в котором можно найти новости по запросу и сохранить в личном кабинете.
 
