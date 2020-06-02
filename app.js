@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const limiter = require('./limiter');
+const { limiter } = require('./limiter');
 
 const { centrErrorHandler } = require('./centrErrorHandler');
 const router = require('./routes/index');
