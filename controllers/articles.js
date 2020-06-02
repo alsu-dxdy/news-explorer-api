@@ -23,9 +23,6 @@ module.exports.getArticleById = (req, res, next) => {
     .catch(next);
 };
 
-// module.exports.sendOneArticle = (req, res) => {
-//   res.json(req.card);
-// };
 
 module.exports.createArticle = (req, res, next) => {
   const {
