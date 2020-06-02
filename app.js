@@ -41,7 +41,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', router);
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`App listening on port ${PORT}`);
 });
 
@@ -75,7 +74,6 @@ app.use((err, req, res, next) => {
   }
 
   if (status === 500) {
-    // eslint-disable-next-line no-console
     console.error(err.stack || err);
     message = 'unexpected error';
   }
