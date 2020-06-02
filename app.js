@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 /* eslint-disable arrow-body-style */
-/* eslint-disable consistent-return */
 require('dotenv').config();
 const express = require('express');
 
@@ -9,10 +8,10 @@ const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const { errors } = require('celebrate');
+const { isCelebrate } = require('celebrate');
+
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
 
 const { PORT, DATABASE_URL } = require('./config');
 
@@ -21,7 +20,6 @@ mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  // autoIndex: true
 });
 
 const limiter = rateLimit({
@@ -49,21 +47,26 @@ app.listen(PORT, () => {
 
 // обработчики ошибок
 app.use(errorLogger); // подключаем логгер ошибок
-app.use(errors()); // обработчик ошибок celebrate
 
 // централизованный обработчик ошибок
-// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   let status = err.statusCode || 500;
   let { message } = err;
+  // Условия расположены от более общих к частным случаям
   if (err.name === 'ValidationError') {
     message = 'ValidationError';
     status = 400;
   }
 
+  if (isCelebrate(err)) {
+    const errorField = err.joi.details[0].context.key;
+    message = `Некорректные данные в поле ${errorField}`;
+    status = 400;
+  }
+
   if (err.message.includes('email') && err.message.includes('unique')) {
     message = 'User with this email already exists';
-    status = 400;
+    status = 409;
   }
 
   if (err.message.includes('password') && err.message.includes('pattern')) {
@@ -77,4 +80,5 @@ app.use((err, req, res, next) => {
     message = 'unexpected error';
   }
   res.status(status).send({ message });
+  next();
 });
