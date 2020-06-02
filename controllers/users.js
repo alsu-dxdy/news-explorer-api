@@ -22,7 +22,6 @@ module.exports.getUserById = (req, res, next) => {
     .catch(next);
 };
 
-// eslint-disable-next-line consistent-return
 module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
