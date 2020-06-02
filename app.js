@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable arrow-body-style */
 require('dotenv').config();
 const express = require('express');
 
