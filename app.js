@@ -4,10 +4,10 @@ require('dotenv').config();
 const express = require('express');
 
 const app = express();
-const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const limiter = require('./limiter');
 
 const { centrErrorHandler } = require('./centrErrorHandler');
 const router = require('./routes/index');
@@ -20,11 +20,6 @@ mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-});
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // за 15 минут
-  max: 100, // можно совершить максимум 100 запросов с одного IP
 });
 
 // подключаем helmet
