@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-
+const cookieParser = require('cookie-parser');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -19,7 +19,7 @@ mongoose.connect(DATABASE_URL, {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
+app.use(cookieParser());// подключаем парсер кук как мидлвэр
 // подключаем helmet
 app.use(helmet());
 
