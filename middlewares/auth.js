@@ -1,16 +1,14 @@
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 const { JWT_SECRET } = require('../config');
 
 const AuthorizationError = require('../errors/AuthorizationError');
 
-
-
 module.exports = (req, res, next) => {
-  const { cookie } = req.headers;
+  const { authorization } = req.headers;
 
-  if (!cookie || !cookie.startsWith('jwt=')) {
+  if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new AuthorizationError('Необходима авторизация');
   }
 
