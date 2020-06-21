@@ -17,7 +17,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT, DATABASE_URL } = require('./config');
 
 const corsOptions = {
-  origin: 'https://api.iseeknews.space',
+  origin: 'http://localhost:8080',
   credentials: true, // для передачи заголовка Access-Control-Allow-credentials
 };
 
