@@ -64,6 +64,7 @@ module.exports.login = (req, res) => {
               domain: '',
               // sameSite: true,
             })
+            .send({ data: newUser.name })
             .end();
         });
     })
