@@ -6,13 +6,12 @@ const { JWT_SECRET } = require('../config');
 const AuthorizationError = require('../errors/AuthorizationError');
 
 module.exports = (req, res, next) => {
-  const { authorization } = req.headers;
+  const token = req.cookies.jwt; // достаем токен
 
-  if (!authorization || !authorization.startsWith('Bearer ')) {
+  if (!token) {
     throw new AuthorizationError('Необходима авторизация');
   }
 
-  const token = req.cookies.jwt; // достаем токен
   let payload;
 
   try {
