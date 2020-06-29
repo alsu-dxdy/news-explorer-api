@@ -57,13 +57,7 @@ module.exports.login = (req, res) => {
             JWT_SECRET,
             { expiresIn: '7d' },
           );
-          res
-            .cookie('jwt', token, {
-              maxAge: 3600000 * 24 * 7, // срок жизни куки
-              httpOnly: true,
-              domain: '',
-              // sameSite: true,
-            })
+          res.cookie('jwt', token, { domain: '', httpOnly: true })
             .send({ data: newUser.name })
             .end();
         });
