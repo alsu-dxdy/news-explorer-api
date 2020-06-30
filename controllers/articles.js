@@ -17,7 +17,7 @@ module.exports.getArticleById = (req, res, next) => {
     .findById(req.params.articleId)
     .select('+owner')
     .orFail(() => {
-      throw (`article with ID ${req.params.articleId} does not exist`);
+      throw new NotFoundError(`article with ID ${req.params.articleId} does not exist`);
     })
     .then((article) => {
       req.article = article;
