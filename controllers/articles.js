@@ -4,7 +4,10 @@ const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find({})
+  Article.find({ owner: req.user._id })
+    .populate('owner')
+    .orFail(new NotFoundError('Articles does not exist'))
+
     .then((articles) => res.send({ articles }))
     .catch(next);
 };
@@ -14,7 +17,7 @@ module.exports.getArticleById = (req, res, next) => {
     .findById(req.params.articleId)
     .select('+owner')
     .orFail(() => {
-      throw new NotFoundError(`article with ID ${req.params.articleId} does not exist`);
+      throw (`article with ID ${req.params.articleId} does not exist`);
     })
     .then((article) => {
       req.article = article;
