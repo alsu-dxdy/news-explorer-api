@@ -68,3 +68,8 @@ module.exports.login = (req, res) => {
         .send({ message: err.message });
     });
 };
+module.exports.logout = (req, res) => {
+  res
+    .cookie('jwt', '', { domain: '', httpOnly: true, maxAge: 0 })
+    .end();
+};
