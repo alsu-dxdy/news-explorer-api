@@ -16,8 +16,19 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, DATABASE_URL } = require('./config');
 
+const whitelist = [
+  'http://localhost:8080',
+  'https://alsu-dxdy.github.io/news-explorer-frontend',
+];
+
 const corsOptions = {
-  origin: 'http://localhost:8080',
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true, // для передачи заголовка Access-Control-Allow-credentials
 };
 
