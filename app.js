@@ -18,7 +18,7 @@ const { PORT, DATABASE_URL } = require('./config');
 
 const whitelist = [
   'http://localhost:8080',
-  'https://alsu-dxdy.github.io/news-explorer-frontend',
+  'https://alsu-dxdy.github.io',
 ];
 
 const corsOptions = {
