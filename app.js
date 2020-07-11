@@ -19,6 +19,8 @@ const { PORT, DATABASE_URL } = require('./config');
 const whitelist = [
   'http://localhost:8080',
   'https://alsu-dxdy.github.io',
+  'https://iseeknews.space',
+  'http://iseeknews.space',
 ];
 
 const corsOptions = {
