@@ -16,24 +16,29 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, DATABASE_URL } = require('./config');
 
-const whitelist = [
-  'http://localhost:8080',
-  'https://alsu-dxdy.github.io',
-  'https://www.iseeknews.space',
-  'http://www.iseeknews.space',
-  'https://iseeknews.space',
-  'http://iseeknews.space',
-];
+// const whitelist = [
+//   'http://localhost:8080',
+//   'https://alsu-dxdy.github.io',
+//   'https://www.iseeknews.space',
+//   'http://www.iseeknews.space',
+//   'https://iseeknews.space',
+//   'http://iseeknews.space',
+// ];
+
+// const corsOptions = {
+//   origin(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // для передачи заголовка Access-Control-Allow-credentials
+// };
 
 const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // для передачи заголовка Access-Control-Allow-credentials
+  origin: 'https://iseeknews.space',
+  credentials: true,
 };
 
 // подключаемся к серверу mongo
