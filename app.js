@@ -21,6 +21,8 @@ const whitelist = [
   'https://alsu-dxdy.github.io',
   'https://www.iseeknews.space',
   'http://www.iseeknews.space',
+  'https://iseeknews.space',
+  'http://iseeknews.space',
 ];
 
 const corsOptions = {
