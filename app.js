@@ -16,30 +16,30 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, DATABASE_URL } = require('./config');
 
-const whitelist = [
-  'http://localhost:8080',
-  'https://alsu-dxdy.github.io',
-  'https://www.iseeknews.space',
-  'http://www.iseeknews.space',
-  'https://iseeknews.space',
-  'http://iseeknews.space',
-];
-
-const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // для передачи заголовка Access-Control-Allow-credentials
-};
+// const whitelist = [
+//   'http://localhost:8080',
+//   'https://alsu-dxdy.github.io',
+//   'https://www.iseeknews.space',
+//   'http://www.iseeknews.space',
+//   'https://iseeknews.space',
+//   'http://iseeknews.space',
+// ];
 
 // const corsOptions = {
-//   origin: 'https://iseeknews.space',
-//   credentials: true,
+//   origin(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // для передачи заголовка Access-Control-Allow-credentials
 // };
+
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  credentials: true
+};
 
 // подключаемся к серверу mongo
 mongoose.connect(DATABASE_URL, {
