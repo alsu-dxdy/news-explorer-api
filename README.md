@@ -37,7 +37,7 @@ mongo
 #### Установка и запуск сервера
 1) Клонировать репозиторий:
 ```
-git clone https://github.com/alsu-dxdy/mesto_server_with_db_jwt
+git clone https://github.com/alsu-dxdy/news-explorer-api
 ```
 2) Установить зависимости: в папке проекта в терминале ввести:
 ```
