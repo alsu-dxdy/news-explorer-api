@@ -37,7 +37,8 @@ const { PORT, DATABASE_URL } = require('./config');
 // };
 
 const corsOptions = {
-  origin: 'http://localhost:8080',
+  //  origin: 'http://localhost:8080',
+  origin: ['http://localhost:8080', 'https://alsu-dxdy.github.io'],
   credentials: true
 };
 
